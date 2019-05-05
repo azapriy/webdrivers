@@ -159,6 +159,7 @@ describe Webdrivers::Chromedriver do
     end
 
     it 'does not make network call if cache is valid' do
+      allow(Webdrivers).to receive(:cache_time).and_return(3600)
       Webdrivers::System.cache_version('chromedriver', '71.0.3578.137')
       allow(Webdrivers::Network).to receive(:get)
 
@@ -168,7 +169,6 @@ describe Webdrivers::Chromedriver do
     end
 
     it 'makes a network call if cache is expired' do
-      allow(Webdrivers).to receive(:cache_time).and_return(0)
       Webdrivers::System.cache_version('chromedriver', '71.0.3578.137')
       allow(Webdrivers::Network).to receive(:get).and_return('73.0.3683.68')
       allow(Webdrivers::System).to receive(:valid_cache?)

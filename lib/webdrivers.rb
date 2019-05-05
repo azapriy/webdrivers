@@ -26,7 +26,7 @@ module Webdrivers
     end
 
     def cache_time
-      @cache_time || 86400
+      @cache_time || 0
     end
 
     def logger
