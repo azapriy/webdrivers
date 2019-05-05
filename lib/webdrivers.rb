@@ -19,6 +19,15 @@ module Webdrivers
 
   class << self
     attr_accessor :proxy_addr, :proxy_port, :proxy_user, :proxy_pass, :install_dir
+    attr_writer :cache_time
+
+    def cache_time=(value)
+      @cache_time = value
+    end
+
+    def cache_time
+      @cache_time || 86400
+    end
 
     def logger
       @logger ||= Webdrivers::Logger.new
